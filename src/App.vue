@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <Bar/>
+    <Nav/>
 
     <v-content>
       <Home/>
@@ -10,6 +11,7 @@
 
 <script>
 import Bar from './components/Bar'
+import Nav from './components/Nav'
 import Home from './components/Home'
 
 export default {
@@ -17,6 +19,7 @@ export default {
 
   components: {
     Bar,
+    Nav,
     Home
   },
 
