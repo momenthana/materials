@@ -12,7 +12,7 @@
         ></v-img>
       </template>
 
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="$store.state.drawer = true"></v-app-bar-nav-icon>
 
       <v-toolbar-title>Materials</v-toolbar-title>
 

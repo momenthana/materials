@@ -1,6 +1,6 @@
 <template>
   <v-navigation-drawer
-    v-model="drawer"
+    v-model="$store.state.drawer"
     absolute
     temporary
   >
@@ -19,10 +19,6 @@
 
 <script>
   export default {
-    name: 'Nav',
-
-    data: () => ({
-      drawer: true
-    })
+    name: 'Nav'
   }
 </script>
