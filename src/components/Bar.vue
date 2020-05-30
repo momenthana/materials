@@ -1,6 +1,6 @@
 <template>
     <v-app-bar
-      absolute
+      app
       color="#ff6f61"
       dark
       prominent
@@ -17,6 +17,18 @@
       <v-toolbar-title>Materials</v-toolbar-title>
 
       <v-spacer></v-spacer>
+
+      <v-toolbar-items>
+        <v-text-field
+          solo-inverted
+          clearable
+          v-model="search"
+          placeholder="Search"
+          prepend-inner-icon="mdi-magnify"
+          color="#ff6f61"
+        >
+        </v-text-field>
+      </v-toolbar-items>
 
       <template v-slot:extension>
         <v-tabs align-with-title>
