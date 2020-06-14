@@ -4,8 +4,8 @@
     <Nav/>
 
     <v-content>
-      <Home v-if="$store.state.content == 'home'"/>
-      <List v-else/>
+      <Group v-if="$store.state.content == 'group'"/>
+      <Node v-else/>
     </v-content>
   </v-app>
 </template>
@@ -13,8 +13,8 @@
 <script>
 import Bar from './components/Bar'
 import Nav from './components/Nav'
-import Home from './components/Home'
-import List from './components/List'
+import Group from './components/Group'
+import Node from './components/Node'
 
 export default {
   name: 'App',
@@ -22,8 +22,8 @@ export default {
   components: {
     Bar,
     Nav,
-    Home,
-    List
+    Group,
+    Node
   },
 
   mounted () {
