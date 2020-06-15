@@ -14,16 +14,16 @@
           <v-card-subtitle>{{ item.description }}</v-card-subtitle>
 
           <v-card-actions>
-            <v-btn color="#ff6f61" dark>보기</v-btn>
+            <v-btn color="#ff6f61" dark @click="$store.state.group = item">보기</v-btn>
 
             <v-btn text>담당자 {{ item.name }}</v-btn>
 
             <v-spacer></v-spacer>
 
-            <v-menu offset-x>
+            <v-menu>
               <template v-slot:activator="{ on }">
-                <v-btn icon v-on="on" @click="show = !show">
-                  <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                <v-btn icon v-on="on">
+                  <v-icon>mdi-chevron-down</v-icon>
                 </v-btn>
               </template>
               <v-list>
@@ -45,19 +45,21 @@
 <script>
 export default {
   data: () => ({
-    show: false,
     items: [
       {
+        id: "1",
         title: "소프트웨어 실습실 물품",
         description: "본관 1층 소프트웨어 실습실",
         name: "김하나"
       },
       {
+        id: "2",
         title: "소프트웨어 실습실 물품",
         description: "본관 1층 소프트웨어 실습실",
         name: "김하나"
       },
       {
+        id: "3",
         title: "소프트웨어 실습실 물품",
         description: "본관 1층 소프트웨어 실습실",
         name: "김하나"

@@ -4,9 +4,13 @@
       <v-img v-bind="props"></v-img>
     </template>
 
-    <v-app-bar-nav-icon @click="$store.state.drawer = true"></v-app-bar-nav-icon>
+    <v-app-bar-nav-icon v-if="$store.state.group" @click="$store.state.group = null">
+      <v-icon>mdi-chevron-left</v-icon>
+    </v-app-bar-nav-icon>
 
-    <v-toolbar-title>Materials</v-toolbar-title>
+    <v-app-bar-nav-icon v-else @click="$store.state.drawer = true"></v-app-bar-nav-icon>
+
+    <v-toolbar-title>{{ $store.state.group ? $store.state.group.title : 'Materials' }}</v-toolbar-title>
 
     <v-spacer></v-spacer>
 
@@ -22,7 +26,7 @@
     </v-toolbar-items>
 
     <template v-slot:extension>
-      <v-tabs align-with-title>
+      <v-tabs align-with-title color="white">
         <v-tab>1</v-tab>
         <v-tab>2</v-tab>
         <v-tab>3</v-tab>

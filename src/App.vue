@@ -1,23 +1,23 @@
 <template>
   <v-app>
-    <Bar/>
-    <Nav/>
+    <Bar />
+    <Nav />
 
     <v-content>
-      <Group v-if="$store.state.content == 'group'"/>
-      <Node v-else/>
+      <Node v-if="$store.state.group" />
+      <Group v-else />
     </v-content>
   </v-app>
 </template>
 
 <script>
-import Bar from './components/Bar'
-import Nav from './components/Nav'
-import Group from './components/Group'
-import Node from './components/Node'
+import Bar from "./components/Bar";
+import Nav from "./components/Nav";
+import Group from "./components/Group";
+import Node from "./components/Node";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     Bar,
@@ -26,12 +26,12 @@ export default {
     Node
   },
 
-  mounted () {
-    const dark = window.matchMedia('(prefers-color-scheme: dark)')
-    this.$vuetify.theme.dark = dark.matches
-    dark.addEventListener('change', () => {
-      this.$vuetify.theme.dark = dark.matches
-    })
+  mounted() {
+    const dark = window.matchMedia("(prefers-color-scheme: dark)");
+    this.$vuetify.theme.dark = dark.matches;
+    dark.addEventListener("change", () => {
+      this.$vuetify.theme.dark = dark.matches;
+    });
   }
 };
 </script>
