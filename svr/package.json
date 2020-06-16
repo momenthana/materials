@@ -1,0 +1,11 @@
+{
+  "name": "server",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "main": "index.js",
+  "license": "MIT"
+}
