@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app color="#ff6f61" dark prominent src>
+  <v-app-bar app color="#ff6f61" dark prominent src style="-webkit-app-region: drag">
     <template v-slot:img="{ props }">
       <v-img v-bind="props"></v-img>
     </template>
