@@ -27,9 +27,8 @@
 
     <template v-slot:extension>
       <v-tabs align-with-title color="white">
-        <v-tab>1</v-tab>
-        <v-tab>2</v-tab>
-        <v-tab>3</v-tab>
+        <v-tab>오름차순</v-tab>
+        <v-tab>내림차순</v-tab>
       </v-tabs>
     </template>
   </v-app-bar>
@@ -37,6 +36,10 @@
 
 <script>
 export default {
-  name: "Bar"
+  name: "Bar",
+
+  data: () => ({
+    search: null
+  })
 };
 </script>

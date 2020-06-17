@@ -7,7 +7,7 @@
         :cols="$vuetify.breakpoint.xsOnly ? 12 : $vuetify.breakpoint.mdAndDown ? 6 : 4"
       >
         <v-card class="ma-3">
-          <v-img src height="100px"></v-img>
+          <v-img :src="item.img" height="100px"></v-img>
 
           <v-card-title>{{ item.title }}</v-card-title>
 
@@ -50,18 +50,24 @@ export default {
     items: [
       {
         id: "1",
+        img:
+          "https://lh3.googleusercontent.com/hgR_vN46zGWDhTd1j9zbmCFdXty6VONuNcBqbh_vO9Ci2RuBGJVxQkO2d3Zbz9LRuup0WeHggzGv=w604-h206-p",
         title: "모니터",
         description: "본관 1층 소프트웨어 실습실",
         name: "김하나"
       },
       {
         id: "2",
+        img:
+          "https://lh3.googleusercontent.com/hgR_vN46zGWDhTd1j9zbmCFdXty6VONuNcBqbh_vO9Ci2RuBGJVxQkO2d3Zbz9LRuup0WeHggzGv=w604-h206-p",
         title: "교사용 PC",
         description: "본관 1층 소프트웨어 실습실",
         name: "김하나"
       },
       {
         id: "3",
+        img:
+          "https://lh3.googleusercontent.com/hgR_vN46zGWDhTd1j9zbmCFdXty6VONuNcBqbh_vO9Ci2RuBGJVxQkO2d3Zbz9LRuup0WeHggzGv=w604-h206-p",
         title: "빔프로젝터",
         description: "본관 1층 소프트웨어 실습실",
         name: "김하나"
