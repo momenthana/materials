@@ -1,16 +1,14 @@
-const Koa = require('koa');
-const Router = require('koa-router');
+const Koa = require('koa')
+const Router = require('koa-router')
 
-const app = new Koa();
-const router = new Router();
+const app = new Koa()
+const router = new Router()
+const root = require('./root')
 
-router.get('/', (ctx, next) => {
-    ctx.body = 'Hello, Hana!';
-});
+router.use('', root.routes())
 
-app.use(router.routes());
-app.use(router.allowedMethods());
+app.use(router.routes()).use(router.allowedMethods())
 
-app.listen(3000, () => {
-    console.log('Server is listening to port 3000');
+app.listen(process.env.PORT, () => {
+    console.log(`Server is listening to port ${process.env.PORT}`)
 });
