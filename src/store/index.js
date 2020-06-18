@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     group: null,
+    node: null,
     drawer: false
   },
   mutations: {
