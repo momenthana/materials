@@ -4,7 +4,7 @@
     <Nav />
 
     <v-main>
-      <Node v-if="$store.state.group || $store.state.node" />
+      <Node v-if="$store.state.group" />
       <Group v-else />
     </v-main>
   </div>
@@ -27,7 +27,8 @@ export default {
   },
 
   created () {
-    this.$store.state.node = this.$route.params.id
+    this.$store.state.group = this.$route.params.group
+    this.$store.state.node = this.$route.params.node
   }
 };
 </script>

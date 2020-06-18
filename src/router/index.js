@@ -10,8 +10,14 @@ const routes = [
     component: () => import('../views/Home.vue')
   },
   {
-    path: '/:id',
-    name: 'Home',
+    path: '/:group',
+    name: 'Group',
+    component: () => import('../views/Home.vue'),
+    props: true
+  },
+  {
+    path: '/:group/:node',
+    name: 'Node',
     component: () => import('../views/Home.vue'),
     props: true
   }

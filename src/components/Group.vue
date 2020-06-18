@@ -3,7 +3,7 @@
     <v-row dense>
       <v-col
         v-for="item in items"
-        :key="item.id"
+        :key="item.group"
         :cols="$vuetify.breakpoint.xsOnly ? 12 : $vuetify.breakpoint.mdAndDown ? 6 : 4"
       >
         <v-card class="ma-3">
@@ -14,7 +14,7 @@
           <v-card-subtitle>{{ item.description }}</v-card-subtitle>
 
           <v-card-actions>
-            <v-btn color="#ff6f61" dark @click="$store.state.group = item">보기</v-btn>
+            <v-btn color="#ff6f61" dark @click="$store.state.group = item.group">보기</v-btn>
 
             <v-btn text>담당자 {{ item.name }}</v-btn>
 
@@ -47,7 +47,7 @@ export default {
   data: () => ({
     items: [
       {
-        id: "1",
+        group: "1",
         img:
           "https://lh3.googleusercontent.com/Y2MgzmpsyjRF-K1bYxOI7GGiOJE6s79qHuxirOsEecNJWETJbhv1EKTGscvvMRgX1jWOomiya1Hh=w302-h103-p",
         title: "소프트웨어 실습실 물품",
@@ -55,7 +55,7 @@ export default {
         name: "김하나"
       },
       {
-        id: "2",
+        group: "2",
         img:
           "https://lh3.googleusercontent.com/aeO9kOTMbhDOobef-jXk-WtcKCWCVm0Q4AzjnmGknoBe_skXpDeJ12XnvO7QKOF6yjg_1SUxRBnY=w302-h103-p",
         title: "과학실 물품",
@@ -63,7 +63,7 @@ export default {
         name: "김하루"
       },
       {
-        id: "3",
+        group: "3",
         img:
           "https://lh3.googleusercontent.com/ccJZMep6SxnC45as3BQFpkJXuwSgMYBtQ6vt-DypuA1L2pWrv6i5PQB1IUNLZXyWI2v_GSRvErAs=w302-h103-p",
         title: "음악실 물품",
