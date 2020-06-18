@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "node -r dotenv/config index.js",
-    "dev": "nodemon -r dotenv/config index.js dotenv_config_path=.env.dev"
+    "serve": "node -r dotenv/config src/index.js",
+    "dev": "nodemon -r dotenv/config src/index.js dotenv_config_path=.env.dev"
   },
   "main": "index.js",
   "license": "MIT",

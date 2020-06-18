@@ -11,4 +11,4 @@ app.use(router.routes()).use(router.allowedMethods())
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is listening to port ${process.env.PORT}`)
-});
+})
