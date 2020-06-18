@@ -3,10 +3,10 @@
     <Bar />
     <Nav />
 
-    <v-content>
+    <v-main>
       <Node v-if="$store.state.group" />
       <Group v-else />
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 

@@ -3,7 +3,7 @@
     <v-row dense>
       <v-col
         v-for="item in items"
-        :key="item"
+        :key="item.id"
         :cols="$vuetify.breakpoint.xsOnly ? 12 : $vuetify.breakpoint.mdAndDown ? 6 : 4"
       >
         <v-card class="ma-3">
