@@ -30,6 +30,57 @@
         <v-tab>오름차순</v-tab>
         <v-tab>내림차순</v-tab>
       </v-tabs>
+
+      <v-row justify="center">
+        <v-dialog v-model="dialog" :width="$vuetify.breakpoint.smAndDown ? '75%' : '50%'">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn fab color="white" bottom right absolute v-bind="attrs" v-on="on">
+              <v-icon color="#ff6f61">mdi-plus</v-icon>
+            </v-btn>
+          </template>
+          <v-card>
+            <v-card-title>
+              <span class="headline">Title</span>
+            </v-card-title>
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field
+                      label="Label"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field
+                      label="Label"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" md="4">
+                    <v-text-field
+                      label="Label"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6">
+                    <v-text-field
+                      label="Label"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6">
+                    <v-text-field
+                      label="Label"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="#ff6f61" text @click="dialog = false">취소</v-btn>
+              <v-btn color="#ff6f61" dark @click="dialog = false">추가</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-row>
     </template>
   </v-app-bar>
 </template>
@@ -39,7 +90,8 @@ export default {
   name: "Bar",
 
   data: () => ({
-    search: null
+    search: null,
+    dialog: false
   })
 };
 </script>
