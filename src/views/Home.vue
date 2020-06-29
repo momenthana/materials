@@ -6,15 +6,17 @@
     <v-main>
       <Node v-if="$store.state.group" />
       <Group v-else />
+      <Dialog />
     </v-main>
   </div>
 </template>
 
 <script>
-import Bar from "@/components/Bar.vue";
-import Nav from "@/components/Nav.vue";
-import Node from "@/components/Node.vue";
-import Group from "@/components/Group.vue";
+import Bar from "@/components/Bar.vue"
+import Nav from "@/components/Nav.vue"
+import Node from "@/components/Node.vue"
+import Group from "@/components/Group.vue"
+import Dialog from "@/components/Dialog.vue"
 
 export default {
   name: "Home",
@@ -23,7 +25,8 @@ export default {
     Bar,
     Nav,
     Node,
-    Group
+    Group,
+    Dialog
   },
 
   created () {

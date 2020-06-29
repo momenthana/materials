@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     group: null,
     node: null,
-    drawer: false
+    drawer: false,
+    dialog: false
   },
   mutations: {
   },
