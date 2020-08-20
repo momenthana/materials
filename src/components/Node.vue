@@ -14,7 +14,7 @@
           <v-card-subtitle>{{ item.description }}</v-card-subtitle>
 
           <v-card-actions>
-            <v-btn color="#ff6f61" dark @click="$store.state.node = item.node, dialog = true">보기</v-btn>
+            <v-btn color="#ff6f61" dark @click="$store.state.node = item.node">보기</v-btn>
 
             <v-btn text>담당자 {{ item.name }}</v-btn>
 
@@ -41,7 +41,7 @@
     </v-row>
 
     <v-row justify="center">
-      <v-dialog v-model="dialog" :width="$vuetify.breakpoint.smAndDown ? '75%' : '50%'">
+      <v-dialog v-if="$store.state.node" @click:outside="$store.state.node = null, dialog = true" v-model="dialog" :width="$vuetify.breakpoint.smAndDown ? '75%' : '50%'">
         <v-card>
           <v-img
             src="https://lh3.googleusercontent.com/hgR_vN46zGWDhTd1j9zbmCFdXty6VONuNcBqbh_vO9Ci2RuBGJVxQkO2d3Zbz9LRuup0WeHggzGv=w604-h206-p"
@@ -62,7 +62,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn color="#ff6f61" dark @click="dialog = false">닫기</v-btn>
+            <v-btn color="#ff6f61" dark @click="$store.state.node = null">닫기</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -82,10 +82,10 @@ export default {
 
   data: () => ({
     url: process.env.VUE_APP_BASE_URL,
-    dialog: false,
+    dialog: true,
     items: [
       {
-        node: "1",
+        node: 1,
         img:
           "https://lh3.googleusercontent.com/hgR_vN46zGWDhTd1j9zbmCFdXty6VONuNcBqbh_vO9Ci2RuBGJVxQkO2d3Zbz9LRuup0WeHggzGv=w604-h206-p",
         title: "모니터",
@@ -93,7 +93,7 @@ export default {
         name: "김하나"
       },
       {
-        node: "2",
+        node: 2,
         img:
           "https://lh3.googleusercontent.com/hgR_vN46zGWDhTd1j9zbmCFdXty6VONuNcBqbh_vO9Ci2RuBGJVxQkO2d3Zbz9LRuup0WeHggzGv=w604-h206-p",
         title: "교사용 PC",
@@ -101,7 +101,7 @@ export default {
         name: "김하나"
       },
       {
-        node: "3",
+        node: 3,
         img:
           "https://lh3.googleusercontent.com/hgR_vN46zGWDhTd1j9zbmCFdXty6VONuNcBqbh_vO9Ci2RuBGJVxQkO2d3Zbz9LRuup0WeHggzGv=w604-h206-p",
         title: "빔프로젝터",
