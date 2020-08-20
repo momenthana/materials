@@ -1,5 +1,6 @@
 const Koa = require('koa')
 const Router = require('koa-router')
+const bodyParser = require('koa-bodyparser')
 const cors = require('@koa/cors')
 const mongoose = require('mongoose')
 
@@ -21,7 +22,7 @@ mongoose.connect(process.env.MONGO, {
 router.use('', root.routes())
 
 app.use(cors())
-
+app.use(bodyParser())
 app.use(router.routes()).use(router.allowedMethods())
 
 app.listen(process.env.PORT, () => {
