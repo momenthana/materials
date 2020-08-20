@@ -1,5 +1,17 @@
 const Group = require('../models/group')
 
+exports.list = async (ctx) => {
+  let group
+
+  try {
+    group = await Group.find().exec()
+  } catch (e) {
+    return ctx.throw(500, e)
+  }
+
+  ctx.body = group;
+}
+
 exports.create = async (ctx) => {
   const {
     img,
