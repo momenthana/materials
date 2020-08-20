@@ -1,0 +1,25 @@
+const Group = require('../models/group')
+
+exports.create = async (ctx) => {
+  const {
+    img,
+    title,
+    description,
+    name
+  } = ctx.request.body
+
+  const group = new Group({
+    img,
+    title,
+    description,
+    name
+  })
+
+  try {
+    await group.save()
+  } catch (e) {
+    return ctx.throw(500, e)
+  }
+
+  ctx.body = group
+}
