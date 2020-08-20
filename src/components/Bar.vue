@@ -25,15 +25,6 @@
       ></v-text-field>
     </v-toolbar-items>
 
-    <v-tooltip bottom>
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn icon v-bind="attrs" v-on="on">
-          <v-icon>{{ false ? 'mdi-logout-variant' : 'mdi-login-variant' }}</v-icon>
-        </v-btn>
-      </template>
-      <span>{{ false ? 'Sign out' : 'Sign in' }}</span>
-    </v-tooltip>
-
     <template v-slot:extension>
       <v-tabs align-with-title color="white">
         <v-tab>오름차순</v-tab>
