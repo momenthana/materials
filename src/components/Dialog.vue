@@ -50,8 +50,8 @@ export default {
             name: this.name,
           })
           .then((res) => {
-            console.log(res.data);
-          });
+            this.$store.state.groupItems.push(res.data)
+          })
       }
     },
   },

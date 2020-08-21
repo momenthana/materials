@@ -8,6 +8,7 @@ export default new Vuex.Store({
     server: null,
     token: null,
     group: null,
+    groupItems: null,
     node: null,
     drawer: false,
     dialog: false
