@@ -5,8 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    server: null,
-    token: null,
+    server: localStorage.getItem('server'),
+    token: localStorage.getItem('token'),
     group: null,
     groupItems: null,
     node: null,

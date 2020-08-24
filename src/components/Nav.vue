@@ -4,7 +4,6 @@
       <v-list-item-content>
         <v-text-field
           solo-inverted
-          clearable
           v-model="$store.state.server"
           placeholder="Server"
           prepend-inner-icon="mdi-server"
@@ -16,7 +15,6 @@
       <v-list-item-content>
         <v-text-field
           solo-inverted
-          clearable
           v-model="$store.state.token"
           placeholder="Token"
           prepend-inner-icon="mdi-key"
@@ -30,5 +28,14 @@
 <script>
 export default {
   name: "Nav",
+
+  watch: {
+    '$store.state.server': function () {
+      localStorage.setItem('server', this.$store.state.server)
+    },
+    '$store.state.token': function () {
+      localStorage.setItem('token', this.$store.state.token)
+    }
+  }
 };
 </script>
