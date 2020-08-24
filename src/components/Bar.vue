@@ -31,7 +31,7 @@
         <v-tab>내림차순</v-tab>
       </v-tabs>
 
-      <v-btn fab color="white" bottom right absolute @click="$store.state.dialog = true">
+      <v-btn v-if="$store.state.online" fab color="white" bottom right absolute @click="$store.state.dialog = true">
         <v-icon color="#ff6f61">mdi-plus</v-icon>
       </v-btn>
     </template>

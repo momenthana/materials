@@ -3,10 +3,13 @@
     <Bar />
     <Nav />
 
-    <v-main>
+    <v-main v-if="$store.state.online">
       <Node v-if="$store.state.group" />
       <Group v-else />
       <Dialog />
+    </v-main>
+    <v-main v-else>
+      <p class="mt-12 text-center">서버에 연결되지 않음</p>
     </v-main>
   </div>
 </template>
@@ -19,19 +22,19 @@ import Group from "@/components/Group.vue"
 import Dialog from "@/components/Dialog.vue"
 
 export default {
-  name: "Home",
+  name: 'home',
 
   components: {
     Bar,
     Nav,
     Node,
     Group,
-    Dialog
+    Dialog,
   },
 
-  created () {
+  created() {
     this.$store.state.group = this.$route.params.group
     this.$store.state.node = this.$route.params.node
   }
-};
+}
 </script>

@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 
 export default {
   data: () => ({
@@ -44,7 +44,7 @@ export default {
     axios: function () {
       if (!this.$store.state.group) {
         axios
-          .post("//" + this.$store.state.server + "/group", {
+          .post('//' + this.$store.state.server + '/group', {
             title: this.title,
             description: this.description,
             name: this.name,

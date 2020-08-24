@@ -43,11 +43,13 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 
 export default {
+  name: 'Group',
+
   created() {
-    axios()
+    this.axios()
   },
 
   watch: {
@@ -58,10 +60,11 @@ export default {
 
   methods: {
     axios: function () {
-      axios.get("//" + this.$store.state.server + "/group").then((res) => {
+      this.$store.state.groupItems = null
+      axios.get('//' + this.$store.state.server + '/group').then((res) => {
         this.$store.state.groupItems = res.data
       })
     }
   }
-};
+}
 </script>
