@@ -2,8 +2,8 @@
   <v-container>
     <v-row dense>
       <v-col
-        v-for="item in items"
-        :key="item.node"
+        v-for="item in this.$store.state.nodeItems"
+        :key="item._id"
         :cols="$vuetify.breakpoint.xsOnly ? 12 : $vuetify.breakpoint.mdAndDown ? 6 : 4"
       >
         <v-card class="ma-3">
@@ -14,7 +14,7 @@
           <v-card-subtitle>{{ item.description }}</v-card-subtitle>
 
           <v-card-actions>
-            <v-btn color="#ff6f61" dark @click="$store.state.node = item.node">보기</v-btn>
+            <v-btn color="#ff6f61" dark @click="$store.state.node = item">보기</v-btn>
 
             <v-btn text>담당자 {{ item.name }}</v-btn>
 
@@ -41,7 +41,12 @@
     </v-row>
 
     <v-row justify="center">
-      <v-dialog v-if="$store.state.node" @click:outside="$store.state.node = null, dialog = true" v-model="dialog" :width="$vuetify.breakpoint.smAndDown ? '75%' : '50%'">
+      <v-dialog
+        v-if="$store.state.node"
+        @click:outside="$store.state.node = null, dialog = true"
+        v-model="dialog"
+        :width="$vuetify.breakpoint.smAndDown ? '75%' : '50%'"
+      >
         <v-card>
           <v-img
             src="https://lh3.googleusercontent.com/hgR_vN46zGWDhTd1j9zbmCFdXty6VONuNcBqbh_vO9Ci2RuBGJVxQkO2d3Zbz9LRuup0WeHggzGv=w604-h206-p"
@@ -49,7 +54,7 @@
           ></v-img>
 
           <v-card-title class="headline">
-            {{ $store.state.node }}
+            {{ $store.state.node.title }}
             <v-btn class="ml-5" text>담당자 김하나</v-btn>
             <v-spacer></v-spacer>
 
@@ -71,44 +76,44 @@
 </template>
 
 <script>
+import axios from "axios";
 import VueQrcode from "@chenfengyuan/vue-qrcode";
 
 export default {
   name: "Node",
 
   components: {
-    VueQrcode
+    VueQrcode,
   },
 
   data: () => ({
     url: process.env.VUE_APP_BASE_URL,
     dialog: true,
-    items: [
-      {
-        node: 1,
-        img:
-          "https://lh3.googleusercontent.com/hgR_vN46zGWDhTd1j9zbmCFdXty6VONuNcBqbh_vO9Ci2RuBGJVxQkO2d3Zbz9LRuup0WeHggzGv=w604-h206-p",
-        title: "모니터",
-        description: "본관 1층 소프트웨어 실습실",
-        name: "김하나"
-      },
-      {
-        node: 2,
-        img:
-          "https://lh3.googleusercontent.com/hgR_vN46zGWDhTd1j9zbmCFdXty6VONuNcBqbh_vO9Ci2RuBGJVxQkO2d3Zbz9LRuup0WeHggzGv=w604-h206-p",
-        title: "교사용 PC",
-        description: "본관 1층 소프트웨어 실습실",
-        name: "김하나"
-      },
-      {
-        node: 3,
-        img:
-          "https://lh3.googleusercontent.com/hgR_vN46zGWDhTd1j9zbmCFdXty6VONuNcBqbh_vO9Ci2RuBGJVxQkO2d3Zbz9LRuup0WeHggzGv=w604-h206-p",
-        title: "빔프로젝터",
-        description: "본관 1층 소프트웨어 실습실",
-        name: "김하나"
-      }
-    ]
-  })
+  }),
+
+  created() {
+    this.axios();
+  },
+
+  watch: {
+    "$store.state.server": function () {
+      this.axios();
+    },
+  },
+
+  methods: {
+    axios: function () {
+      this.$store.state.nodeItems = null;
+      axios
+        .get("//" + this.$store.state.server + "/node", {
+          params: {
+            group: this.$store.state.group,
+          },
+        })
+        .then((res) => {
+          this.$store.state.nodeItems = res.data;
+        });
+    },
+  },
 };
 </script>

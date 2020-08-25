@@ -12,7 +12,8 @@ export default new Vuex.Store({
     token: localStorage.getItem('token'),
     group: null,
     groupItems: null,
-    node: null
+    node: null,
+    nodeItems: null
   },
   mutations: {
   },

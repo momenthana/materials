@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
 export default {
   data: () => ({
@@ -42,17 +42,19 @@ export default {
 
   methods: {
     axios: function () {
-      if (!this.$store.state.group) {
-        axios
-          .post('//' + this.$store.state.server + '/group', {
+      axios
+        .post("//" + this.$store.state.server + (this.$store.state.group ? "/node" : "/group"),
+          {
             title: this.title,
             description: this.description,
             name: this.name,
-          })
-          .then((res) => {
-            this.$store.state.groupItems.push(res.data)
-          })
-      }
+            group: this.$store.state.group
+          }
+        )
+        .then((res) => {
+          if (this.$store.state.group) this.$store.state.nodeItems.push(res.data);
+          else this.$store.state.groupItems.push(res.data);
+        });
     },
   },
 };
