@@ -1,10 +1,12 @@
 const Node = require('../models/node')
 
 exports.list = async ctx => {
+  const { group } = ctx.query
+
   let node
 
   try {
-    node = await Node.find().exec()
+    node = await Node.find({ group: group }).exec()
   } catch (e) {
     return ctx.throw(500, e)
   }
@@ -17,14 +19,16 @@ exports.create = async ctx => {
     img,
     title,
     description,
-    name
+    name,
+    group
   } = ctx.request.body
 
   const node = new Node({
     img,
     title,
     description,
-    name
+    name,
+    group
   })
 
   try {
