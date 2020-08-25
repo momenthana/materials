@@ -10,7 +10,7 @@
 
     <v-app-bar-nav-icon v-else @click="$store.state.drawer = true"></v-app-bar-nav-icon>
 
-    <v-toolbar-title>{{ $store.state.group ? 'Title' : 'Materials' }}</v-toolbar-title>
+    <v-toolbar-title>{{ $store.state.group ? $store.state.group.title : 'Materials' }}</v-toolbar-title>
 
     <v-spacer></v-spacer>
 

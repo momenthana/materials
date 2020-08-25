@@ -54,11 +54,11 @@
 
           <v-card-title class="headline">
             {{ $store.state.node.title }}
-            <v-btn class="ml-5" text>담당자 김하나</v-btn>
+            <v-btn class="ml-5" text>담당자 {{ $store.state.node.name }}</v-btn>
             <v-spacer></v-spacer>
 
             <vue-qrcode
-              :value="`${url}/${$store.state.group}/${$store.state.node}`"
+              :value="`${url}/${$store.state.group._id}/${$store.state.node._id}`"
               :options="{ errorCorrectionLevel: 'H' }"
             />
           </v-card-title>
@@ -66,7 +66,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn color="#ff6f61" dark @click="$store.state.node = null">닫기</v-btn>
+            <v-btn :color="$store.state.color" dark @click="$store.state.node = null">닫기</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -106,7 +106,7 @@ export default {
       axios
         .get("//" + this.$store.state.server + "/node", {
           params: {
-            group: this.$store.state.group,
+            group: this.$store.state.group._id,
           },
         })
         .then((res) => {

@@ -2,12 +2,15 @@
   <v-row justify="center">
     <v-dialog v-model="$store.state.dialog" :width="$vuetify.breakpoint.smAndDown ? '75%' : '50%'">
       <v-card>
-        <v-sheet :color="$store.state.color" height="100px">
-          <v-img :src="img" height="100px">
-            <v-btn class="ma-3" icon>
-              <v-icon>mdi-pencil</v-icon>
-            </v-btn>
-          </v-img>
+        <v-img class="text-right" v-if="img" :src="img" height="100px">
+          <v-btn class="ma-3" icon dark @click="dialog = true">
+            <v-icon>mdi-image-plus</v-icon>
+          </v-btn>
+        </v-img>
+        <v-sheet v-else class="text-right" :color="$store.state.color" height="100px">
+          <v-btn class="ma-3" icon dark @click="dialog = true">
+            <v-icon>mdi-image-plus</v-icon>
+          </v-btn>
         </v-sheet>
         <v-card-text>
           <v-container>
@@ -34,7 +37,12 @@
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12">
-                  <v-text-field v-model="description" label="설명" :color="$store.state.color" clearable></v-text-field>
+                  <v-text-field
+                    v-model="description"
+                    label="설명"
+                    :color="$store.state.color"
+                    clearable
+                  ></v-text-field>
                 </v-col>
               </v-row>
             </v-form>
@@ -47,6 +55,30 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <v-dialog v-model="dialog" :width="$vuetify.breakpoint.smAndDown ? '90%' : '75%'">
+      <v-card>
+        <v-tabs :color="$store.state.color" vertical>
+          <v-tab>URL</v-tab>
+          <v-tab>General</v-tab>
+          <v-tab>English & History</v-tab>
+          <v-tab>Math & Science</v-tab>
+          <v-tab>Arts</v-tab>
+          <v-tab>Sports</v-tab>
+          <v-tab>Other</v-tab>
+          <v-tab-item>
+            <v-col cols="12">
+              <v-text-field v-model="img" label="URL" :color="$store.state.color" clearable></v-text-field>
+            </v-col>
+          </v-tab-item>
+          <v-tab-item>2</v-tab-item>
+          <v-tab-item>3</v-tab-item>
+          <v-tab-item>4</v-tab-item>
+          <v-tab-item>5</v-tab-item>
+          <v-tab-item>6</v-tab-item>
+          <v-tab-item>7</v-tab-item>
+        </v-tabs>
+      </v-card>
+    </v-dialog>
   </v-row>
 </template>
 
@@ -55,6 +87,7 @@ import axios from "axios";
 
 export default {
   data: () => ({
+    dialog: false,
     img: null,
     title: null,
     description: null,
@@ -90,6 +123,7 @@ export default {
             this.$store.state.nodeItems.push(res.data);
           else this.$store.state.groupItems.push(res.data);
           this.$store.state.dialog = false;
+          this.img = null;
           this.reset();
         });
     },

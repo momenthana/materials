@@ -15,7 +15,7 @@
           <v-card-subtitle>{{ item.description ? item.description : '설명이 비어있음' }}</v-card-subtitle>
 
           <v-card-actions>
-            <v-btn :color="$store.state.color" dark @click="$store.state.group = item._id">보기</v-btn>
+            <v-btn :color="$store.state.color" dark @click="$store.state.group = item">보기</v-btn>
 
             <v-btn text>담당자 {{ item.name }}</v-btn>
 
