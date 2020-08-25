@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app color="#ff6f61" dark prominent src style="-webkit-app-region: drag">
+  <v-app-bar app :color="$store.state.color" dark prominent src style="-webkit-app-region: drag">
     <template v-slot:img="{ props }">
       <v-img v-bind="props"></v-img>
     </template>
@@ -21,7 +21,7 @@
         v-model="search"
         placeholder="Search"
         prepend-inner-icon="mdi-magnify"
-        color="#ff6f61"
+        :color="$store.state.color"
       ></v-text-field>
     </v-toolbar-items>
 
@@ -32,7 +32,7 @@
       </v-tabs>
 
       <v-btn v-if="$store.state.online" fab color="white" bottom right absolute @click="$store.state.dialog = true">
-        <v-icon color="#ff6f61">mdi-plus</v-icon>
+        <v-icon :color="$store.state.color">mdi-plus</v-icon>
       </v-btn>
     </template>
   </v-app-bar>

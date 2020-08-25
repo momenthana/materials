@@ -8,14 +8,14 @@
       >
         <v-card class="ma-3">
           <v-img v-if="item.img" :src="item.img" height="100px"></v-img>
-          <v-sheet v-else color="#ff6f61" height="100px"></v-sheet>
+          <v-sheet v-else :color="$store.state.color" height="100px"></v-sheet>
 
           <v-card-title>{{ item.title }}</v-card-title>
 
           <v-card-subtitle>{{ item.description ? item.description : '설명이 비어있음' }}</v-card-subtitle>
 
           <v-card-actions>
-            <v-btn color="#ff6f61" dark @click="$store.state.node = item">보기</v-btn>
+            <v-btn :color="$store.state.color" dark @click="$store.state.node = item">보기</v-btn>
 
             <v-btn text>담당자 {{ item.name }}</v-btn>
 
@@ -32,7 +32,7 @@
                   <v-btn text>수정하기</v-btn>
                 </v-list-item>
                 <v-list-item>
-                  <v-btn text color="#ff6f61">삭제하기</v-btn>
+                  <v-btn text :color="$store.state.color">삭제하기</v-btn>
                 </v-list-item>
               </v-list>
             </v-menu>
@@ -50,7 +50,7 @@
       >
         <v-card>
           <v-img v-if="$store.state.node.img" :src="$store.state.node.img" height="100px"></v-img>
-          <v-sheet v-else color="#ff6f61" height="100px"></v-sheet>
+          <v-sheet v-else :color="$store.state.color" height="100px"></v-sheet>
 
           <v-card-title class="headline">
             {{ $store.state.node.title }}

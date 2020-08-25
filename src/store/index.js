@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    color: localStorage.getItem('color') || '#9146ff',
     online: false,
     drawer: false,
     dialog: false,

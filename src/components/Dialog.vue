@@ -2,7 +2,7 @@
   <v-row justify="center">
     <v-dialog v-model="$store.state.dialog" :width="$vuetify.breakpoint.smAndDown ? '75%' : '50%'">
       <v-card>
-        <v-sheet color="#ff6f61" height="100px">
+        <v-sheet :color="$store.state.color" height="100px">
           <v-img :src="img" height="100px">
             <v-btn class="ma-3" icon>
               <v-icon>mdi-pencil</v-icon>
@@ -17,7 +17,7 @@
                   <v-text-field
                     v-model="title"
                     label="표제"
-                    color="#ff6f61"
+                    :color="$store.state.color"
                     clearable
                     required
                     :rules="[v => !!v || 'Title is required']"
@@ -27,14 +27,14 @@
                   <v-text-field
                     v-model="name"
                     label="담당자"
-                    color="#ff6f61"
+                    :color="$store.state.color"
                     clearable
                     required
                     :rules="[v => !!v || 'Name is required']"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12">
-                  <v-text-field v-model="description" label="설명" color="#ff6f61" clearable></v-text-field>
+                  <v-text-field v-model="description" label="설명" :color="$store.state.color" clearable></v-text-field>
                 </v-col>
               </v-row>
             </v-form>
@@ -42,8 +42,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="#ff6f61" text @click="reset(), $store.state.dialog = false">취소</v-btn>
-          <v-btn v-if="valid" color="#ff6f61" dark @click="validate()">추가</v-btn>
+          <v-btn :color="$store.state.color" text @click="reset(), $store.state.dialog = false">취소</v-btn>
+          <v-btn v-if="valid" :color="$store.state.color" dark @click="validate()">추가</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
