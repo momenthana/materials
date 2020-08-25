@@ -19,6 +19,9 @@
           placeholder="Token"
           prepend-inner-icon="mdi-key"
           color="#ff6f61"
+          :type="showToken ? 'text' : 'password'"
+          :append-icon="showToken ? 'mdi-eye-off' : 'mdi-eye'"
+          @click:append="showToken = !showToken"
         ></v-text-field>
       </v-list-item-content>
     </v-list-item>
@@ -30,6 +33,10 @@ import axios from 'axios'
 
 export default {
   name: "Nav",
+
+  data: () => ({
+    showToken: false,
+  }),
 
   created() {
     this.axios()

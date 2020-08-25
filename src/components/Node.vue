@@ -11,7 +11,7 @@
 
           <v-card-title>{{ item.title }}</v-card-title>
 
-          <v-card-subtitle>{{ item.description }}</v-card-subtitle>
+          <v-card-subtitle>{{ item.description ? item.description : '설명이 비어있음' }}</v-card-subtitle>
 
           <v-card-actions>
             <v-btn color="#ff6f61" dark @click="$store.state.node = item">보기</v-btn>
