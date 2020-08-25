@@ -7,7 +7,8 @@
         :cols="$vuetify.breakpoint.xsOnly ? 12 : $vuetify.breakpoint.mdAndDown ? 6 : 4"
       >
         <v-card class="ma-3">
-          <v-img :src="item.img" height="100px"></v-img>
+          <v-img v-if="item.img" :src="item.img" height="100px"></v-img>
+          <v-sheet v-else color="#ff6f61" height="100px"></v-sheet>
 
           <v-card-title>{{ item.title }}</v-card-title>
 
@@ -48,10 +49,8 @@
         :width="$vuetify.breakpoint.smAndDown ? '75%' : '50%'"
       >
         <v-card>
-          <v-img
-            src="https://lh3.googleusercontent.com/hgR_vN46zGWDhTd1j9zbmCFdXty6VONuNcBqbh_vO9Ci2RuBGJVxQkO2d3Zbz9LRuup0WeHggzGv=w604-h206-p"
-            height="100px"
-          ></v-img>
+          <v-img v-if="$store.state.node.img" :src="$store.state.node.img" height="100px"></v-img>
+          <v-sheet v-else color="#ff6f61" height="100px"></v-sheet>
 
           <v-card-title class="headline">
             {{ $store.state.node.title }}

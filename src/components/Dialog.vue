@@ -2,6 +2,13 @@
   <v-row justify="center">
     <v-dialog v-model="$store.state.dialog" :width="$vuetify.breakpoint.smAndDown ? '75%' : '50%'">
       <v-card>
+        <v-sheet color="#ff6f61" height="100px">
+          <v-img :src="img" height="100px">
+            <v-btn class="ma-3" icon>
+              <v-icon>mdi-pencil</v-icon>
+            </v-btn>
+          </v-img>
+        </v-sheet>
         <v-card-text>
           <v-container>
             <v-form ref="form" v-model="valid" :lazy-validation="lazy">
@@ -48,6 +55,7 @@ import axios from "axios";
 
 export default {
   data: () => ({
+    img: null,
     title: null,
     description: null,
     name: null,
@@ -70,6 +78,7 @@ export default {
             this.$store.state.server +
             (this.$store.state.group ? "/node" : "/group"),
           {
+            img: this.img,
             title: this.title,
             description: this.description,
             name: this.name,

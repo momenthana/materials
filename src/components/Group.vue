@@ -7,7 +7,8 @@
         :cols="$vuetify.breakpoint.xsOnly ? 12 : $vuetify.breakpoint.mdAndDown ? 6 : 4"
       >
         <v-card class="ma-3">
-          <v-img :src="item.img" height="100px"></v-img>
+          <v-img v-if="item.img" :src="item.img" height="100px"></v-img>
+          <v-sheet v-else color="#ff6f61" height="100px"></v-sheet>
 
           <v-card-title>{{ item.title }}</v-card-title>
 
