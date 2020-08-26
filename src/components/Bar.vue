@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app :color="$store.state.color" dark prominent src style="-webkit-app-region: drag">
+  <v-app-bar app :color="$store.state.color" dark prominent :src="$store.state.group ? $store.state.group.img : ''" style="-webkit-app-region: drag">
     <template v-slot:img="{ props }">
       <v-img v-bind="props"></v-img>
     </template>
@@ -45,6 +45,6 @@ export default {
   data: () => ({
     search: null,
     dialog: false
-  })
+  }),
 };
 </script>

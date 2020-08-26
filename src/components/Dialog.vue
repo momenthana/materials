@@ -50,7 +50,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn :color="$store.state.color" text @click="reset(), $store.state.dialog = false">취소</v-btn>
+          <v-btn :color="$store.state.color" text @click="reset(), $store.state.dialog = false, img = null">취소</v-btn>
           <v-btn v-if="valid" :color="$store.state.color" dark @click="validate()">추가</v-btn>
         </v-card-actions>
       </v-card>
