@@ -4,12 +4,12 @@
       <v-card>
         <v-img class="text-right" v-if="img" :src="img" height="100px">
           <v-btn class="ma-3" icon dark @click="dialog = true">
-            <v-icon>mdi-image-plus</v-icon>
+            <v-icon :color="img ? $store.state.color : null">mdi-image-plus</v-icon>
           </v-btn>
         </v-img>
         <v-sheet v-else class="text-right" :color="$store.state.color" height="100px">
           <v-btn class="ma-3" icon dark @click="dialog = true">
-            <v-icon>mdi-image-plus</v-icon>
+            <v-icon :color="img ? $store.state.color : null">mdi-image-plus</v-icon>
           </v-btn>
         </v-sheet>
         <v-card-text>
@@ -50,7 +50,11 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn :color="$store.state.color" text @click="reset(), $store.state.dialog = false, img = null">취소</v-btn>
+          <v-btn
+            :color="$store.state.color"
+            text
+            @click="reset(), $store.state.dialog = false, img = null"
+          >취소</v-btn>
           <v-btn v-if="valid" :color="$store.state.color" dark @click="validate()">추가</v-btn>
         </v-card-actions>
       </v-card>

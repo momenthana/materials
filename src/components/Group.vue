@@ -29,10 +29,16 @@
               </template>
               <v-list>
                 <v-list-item>
+                  <v-btn
+                    text
+                    v-clipboard:copy="url + '/' + item._id"
+                  >링크 복사</v-btn>
+                </v-list-item>
+                <v-list-item>
                   <v-btn text>수정하기</v-btn>
                 </v-list-item>
                 <v-list-item>
-                  <v-btn text color="#ff6f61">삭제하기</v-btn>
+                  <v-btn text color="red">삭제하기</v-btn>
                 </v-list-item>
               </v-list>
             </v-menu>
@@ -48,6 +54,10 @@ import axios from 'axios'
 
 export default {
   name: 'Group',
+
+  data: () => ({
+    url: process.env.VUE_APP_BASE_URL,
+  }),
 
   created() {
     this.axios()
