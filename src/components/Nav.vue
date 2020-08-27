@@ -11,7 +11,7 @@
               solo-inverted
               v-model="$store.state.color"
               placeholder="Color"
-              prepend-inner-icon="mdi-format-color-fill"
+              prepend-icon="mdi-format-color-fill"
               :color="$store.state.color"
             ></v-text-field>
           </template>
@@ -22,14 +22,14 @@
           solo-inverted
           v-model="$store.state.server"
           placeholder="Server"
-          prepend-inner-icon="mdi-server"
+          prepend-icon="mdi-server"
           :color="$store.state.color"
         ></v-text-field>
         <v-text-field
           solo-inverted
           v-model="$store.state.token"
           placeholder="Token"
-          prepend-inner-icon="mdi-key"
+          prepend-icon="mdi-key"
           :color="$store.state.color"
           :type="showToken ? 'text' : 'password'"
           :append-icon="showToken ? 'mdi-eye-off' : 'mdi-eye'"
