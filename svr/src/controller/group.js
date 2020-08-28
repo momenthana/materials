@@ -51,3 +51,22 @@ exports.create = async (ctx) => {
 
   ctx.body = group
 }
+
+exports.delete = async (ctx) => {
+  const {
+    id
+  } = ctx.params
+
+  console.log(id)
+  
+  try {
+    await Group.findOneAndDelete({ _id: id }).exec()
+  } catch (e) {
+    if (e.name === 'CastError') {
+      ctx.status = 400
+      return
+    }
+  }
+
+  ctx.status = 204
+}

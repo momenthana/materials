@@ -29,16 +29,13 @@
               </template>
               <v-list>
                 <v-list-item>
-                  <v-btn
-                    text
-                    v-clipboard:copy="url + '/' + item._id"
-                  >링크 복사</v-btn>
+                  <v-btn text v-clipboard:copy="url + '/' + item._id">링크 복사</v-btn>
                 </v-list-item>
                 <v-list-item>
-                  <v-btn text>수정하기</v-btn>
+                  <v-btn text :color="$store.state.color">수정하기</v-btn>
                 </v-list-item>
                 <v-list-item>
-                  <v-btn text color="red">삭제하기</v-btn>
+                  <v-btn text color="red" @click="axiosDelete(item._id)">삭제하기</v-btn>
                 </v-list-item>
               </v-list>
             </v-menu>
@@ -50,32 +47,44 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
 export default {
-  name: 'Group',
+  name: "Group",
 
   data: () => ({
     url: process.env.VUE_APP_BASE_URL,
   }),
 
   created() {
-    this.axios()
+    this.axiosGet();
   },
 
   watch: {
-    '$store.state.server': function () {
-      this.axios()
-    }
+    "$store.state.server": function () {
+      this.axiosGet();
+    },
   },
 
   methods: {
-    axios: function () {
-      this.$store.state.groupItems = null
-      axios.get('//' + this.$store.state.server + '/group').then((res) => {
-        this.$store.state.groupItems = res.data
-      })
-    }
-  }
-}
+    axiosGet: function () {
+      this.$store.state.groupItems = null;
+      axios.get("//" + this.$store.state.server + "/group").then((res) => {
+        this.$store.state.groupItems = res.data;
+      });
+    },
+    axiosDelete: function (id) {
+      axios
+        .delete("//" + this.$store.state.server + "/group/" + id)
+        .then((res) => {
+          const items = this.$store.state.groupItems;
+          if (res.status == 204)
+            items.splice(
+              items.findIndex((item) => item._id == id),
+              1
+            );
+        });
+    },
+  },
+};
 </script>

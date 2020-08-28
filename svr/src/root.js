@@ -11,6 +11,7 @@ root.get('/', ctx => {
 root.get('/group', group.list)
 root.get('/group/:id', group.id)
 root.post('/group', group.create)
+root.delete('/group/:id', group.delete)
 
 root.get('/node', node.list)
 root.get('/node/:id', node.id)
