@@ -55,3 +55,20 @@ exports.create = async ctx => {
 
   ctx.body = node
 }
+
+exports.delete = async (ctx) => {
+  const {
+    id
+  } = ctx.params
+  
+  try {
+    await Node.findOneAndDelete({ _id: id }).exec()
+  } catch (e) {
+    if (e.name === 'CastError') {
+      ctx.status = 400
+      return
+    }
+  }
+
+  ctx.status = 204
+}

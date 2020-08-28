@@ -56,8 +56,6 @@ exports.delete = async (ctx) => {
   const {
     id
   } = ctx.params
-
-  console.log(id)
   
   try {
     await Group.findOneAndDelete({ _id: id }).exec()

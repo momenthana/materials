@@ -38,7 +38,7 @@
                   <v-btn text :color="$store.state.color">수정하기</v-btn>
                 </v-list-item>
                 <v-list-item>
-                  <v-btn text color="red">삭제하기</v-btn>
+                  <v-btn text color="red" @click="axiosDelete(item._id)">삭제하기</v-btn>
                 </v-list-item>
               </v-list>
             </v-menu>
@@ -75,7 +75,7 @@
                   <v-btn text :color="$store.state.color">수정하기</v-btn>
                 </v-list-item>
                 <v-list-item>
-                  <v-btn text color="red">삭제하기</v-btn>
+                  <v-btn text color="red" @click="axiosDelete($store.state.node._id)">삭제하기</v-btn>
                 </v-list-item>
               </v-list>
             </v-menu>
@@ -136,17 +136,17 @@ export default {
   }),
 
   created() {
-    this.axios();
+    this.axiosGet();
   },
 
   watch: {
     "$store.state.server": function () {
-      this.axios();
+      this.axiosGet();
     },
   },
 
   methods: {
-    axios: function () {
+    axiosGet: function () {
       this.$store.state.nodeItems = null;
       axios
         .get("//" + this.$store.state.server + "/node", {
@@ -156,6 +156,20 @@ export default {
         })
         .then((res) => {
           this.$store.state.nodeItems = res.data;
+        });
+    },
+    axiosDelete: function (id) {
+      axios
+        .delete("//" + this.$store.state.server + "/node/" + id)
+        .then((res) => {
+          const items = this.$store.state.nodeItems;
+          if (res.status == 204) {
+            this.$store.state.node = null;
+            items.splice(
+              items.findIndex((item) => item._id == id),
+              1
+            );
+          }
         });
     },
   },

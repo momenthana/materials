@@ -16,5 +16,6 @@ root.delete('/group/:id', group.delete)
 root.get('/node', node.list)
 root.get('/node/:id', node.id)
 root.post('/node', node.create)
+root.delete('/node/:id', node.delete)
 
 module.exports = root
