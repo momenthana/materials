@@ -15,14 +15,15 @@
 </template>
 
 <script>
-import Bar from "@/components/Bar.vue"
-import Nav from "@/components/Nav.vue"
-import Node from "@/components/Node.vue"
-import Group from "@/components/Group.vue"
-import Dialog from "@/components/Dialog.vue"
+import Bar from "@/components/Bar.vue";
+import Nav from "@/components/Nav.vue";
+import Node from "@/components/Node.vue";
+import Group from "@/components/Group.vue";
+import Dialog from "@/components/Dialog.vue";
+import axios from "axios";
 
 export default {
-  name: 'home',
+  name: "home",
 
   components: {
     Bar,
@@ -33,8 +34,17 @@ export default {
   },
 
   created() {
-    this.$store.state.group = this.$route.params.group
-    this.$store.state.node = this.$route.params.node
-  }
-}
+    this.$store.state.node = this.$route.params.node;
+
+    if (this.$route.params.group) {
+      axios
+        .get(
+          "//" + this.$store.state.server + "/group/" + this.$route.params.group
+        )
+        .then((res) => {
+          this.$store.state.group = res.data;
+        });
+    }
+  },
+};
 </script>

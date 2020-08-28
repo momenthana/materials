@@ -9,7 +9,23 @@ exports.list = async (ctx) => {
     return ctx.throw(500, e)
   }
 
-  ctx.body = group;
+  ctx.body = group
+}
+
+exports.id = async (ctx) => {
+  const {
+    id
+  } = ctx.params
+
+  let group
+
+  try {
+    group = await Group.findById(id).exec()
+  } catch (e) {
+    return ctx.throw(500, e)
+  }
+
+  ctx.body = group
 }
 
 exports.create = async (ctx) => {
