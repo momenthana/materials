@@ -13,6 +13,7 @@ root.get('/group/:id', group.id)
 root.post('/group', group.create)
 
 root.get('/node', node.list)
+root.get('/node/:id', node.id)
 root.post('/node', node.create)
 
 module.exports = root

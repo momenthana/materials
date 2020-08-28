@@ -14,6 +14,22 @@ exports.list = async ctx => {
   ctx.body = node;
 }
 
+exports.id = async (ctx) => {
+  const {
+    id
+  } = ctx.params
+
+  let node
+
+  try {
+    node = await Node.findById(id).exec()
+  } catch (e) {
+    return ctx.throw(500, e)
+  }
+
+  ctx.body = node
+}
+
 exports.create = async ctx => {
   const {
     img,

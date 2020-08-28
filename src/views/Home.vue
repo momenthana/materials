@@ -34,8 +34,6 @@ export default {
   },
 
   created() {
-    this.$store.state.node = this.$route.params.node;
-
     if (this.$route.params.group) {
       axios
         .get(
@@ -43,6 +41,16 @@ export default {
         )
         .then((res) => {
           this.$store.state.group = res.data;
+        });
+    }
+
+    if (this.$route.params.node) {
+      axios
+        .get(
+          "//" + this.$store.state.server + "/node/" + this.$route.params.node,
+        )
+        .then((res) => {
+          this.$store.state.node = res.data;
         });
     }
   },

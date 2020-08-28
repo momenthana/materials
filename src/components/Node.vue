@@ -72,12 +72,6 @@
               </template>
               <v-list>
                 <v-list-item>
-                  <v-btn
-                    text
-                    v-clipboard:copy="url + '/' + $store.state.group._id + '/' + $store.state.node._id"
-                  >링크 복사</v-btn>
-                </v-list-item>
-                <v-list-item>
                   <v-btn text :color="$store.state.color">수정하기</v-btn>
                 </v-list-item>
                 <v-list-item>
