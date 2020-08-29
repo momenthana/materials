@@ -71,6 +71,7 @@ export default {
       this.$store.state.groupItems = null;
       axios.get("//" + this.$store.state.server + "/group").then((res) => {
         this.$store.state.groupItems = res.data;
+        this.sort();
       });
     },
     axiosDelete: function (id) {
@@ -84,6 +85,14 @@ export default {
               1
             );
         });
+    },
+    sort() {
+      const items = this.$store.state.group
+        ? this.$store.state.nodeItems
+        : this.$store.state.groupItems;
+      if (this.$store.state.tab)
+        items.sort((a, b) => b.name.localeCompare(a.name));
+      else items.sort((a, b) => a.name.localeCompare(b.name));
     },
   },
 };

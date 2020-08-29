@@ -9,6 +9,7 @@ export default new Vuex.Store({
     online: false,
     drawer: false,
     dialog: false,
+    tab: 0,
     server: localStorage.getItem('server'),
     token: localStorage.getItem('token'),
     group: null,

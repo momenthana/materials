@@ -1,5 +1,12 @@
 <template>
-  <v-app-bar app :color="$store.state.color" dark prominent :src="$store.state.group ? $store.state.group.img : ''" style="-webkit-app-region: drag">
+  <v-app-bar
+    app
+    :color="$store.state.color"
+    dark
+    prominent
+    :src="$store.state.group ? $store.state.group.img : null"
+    style="-webkit-app-region: drag"
+  >
     <template v-slot:img="{ props }">
       <v-img v-bind="props"></v-img>
     </template>
@@ -26,12 +33,20 @@
     </v-toolbar-items>
 
     <template v-slot:extension>
-      <v-tabs align-with-title color="white">
+      <v-tabs align-with-title color="white" v-model="$store.state.tab">
         <v-tab>오름차순</v-tab>
         <v-tab>내림차순</v-tab>
       </v-tabs>
 
-      <v-btn v-if="$store.state.online" fab color="white" bottom right absolute @click="$store.state.dialog = true">
+      <v-btn
+        v-if="$store.state.online"
+        fab
+        color="white"
+        bottom
+        right
+        absolute
+        @click="$store.state.dialog = true"
+      >
         <v-icon :color="$store.state.color">mdi-plus</v-icon>
       </v-btn>
     </template>
@@ -44,7 +59,24 @@ export default {
 
   data: () => ({
     search: null,
-    dialog: false
+    dialog: false,
   }),
+
+  watch: {
+    "$store.state.tab": function () {
+      this.sort();
+    },
+  },
+
+  methods: {
+    sort() {
+      const items = this.$store.state.group
+        ? this.$store.state.nodeItems
+        : this.$store.state.groupItems;
+      if (this.$store.state.tab)
+        items.sort((a, b) => b.name.localeCompare(a.name));
+      else items.sort((a, b) => a.name.localeCompare(b.name));
+    },
+  },
 };
 </script>
