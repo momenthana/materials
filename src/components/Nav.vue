@@ -47,6 +47,7 @@ export default {
   name: "Nav",
 
   data: () => ({
+    menu: false,
     showToken: false,
   }),
 
