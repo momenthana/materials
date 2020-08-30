@@ -87,20 +87,36 @@
             <v-spacer></v-spacer>
 
             <v-btn :color="$store.state.color" dark @click="$store.state.node = null" text>닫기</v-btn>
-            <v-btn :color="$store.state.color" dark @click="print = true">인쇄</v-btn>
+            <v-btn :color="$store.state.color" dark @click="confirm = true">인쇄</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
       <v-dialog
         v-if="$store.state.node"
-        @click:outside="print = false"
-        v-model="print"
+        @click:outside="confirm = false"
+        v-model="confirm"
         :width="$vuetify.breakpoint.smAndDown ? '60%' : '40%'"
       >
         <v-card>
-          <v-card-title>인쇄</v-card-title>
+          <v-card-title>
+            <v-row>
+              <v-btn large :color="connection ? 'green' : 'red'">
+                <v-icon left dark>mdi-printer</v-icon>
+                {{ connection ? '연결됨' : '연결끊김' }}
+              </v-btn>
 
-          <v-card-text>
+              <v-text-field
+                class="ml-3"
+                solo-inverted
+                v-model="$store.state.printer"
+                placeholder="Printer"
+                :color="$store.state.color"
+                clearable
+              ></v-text-field>
+            </v-row>
+          </v-card-title>
+
+          <v-card-text class="text-center">
             <vue-qrcode
               :value="`${url}/${$store.state.group._id}/${$store.state.node._id}`"
               :options="{ errorCorrectionLevel: 'H' }"
@@ -110,7 +126,8 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn :color="$store.state.color" dark @click="print = null" text>닫기</v-btn>
+            <v-btn :color="$store.state.color" @click="confirm = null" text>닫기</v-btn>
+            <v-btn :color="$store.state.color" :disabled="!connection" dark @click="confirm = null, print()">확인</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -121,6 +138,7 @@
 <script>
 import axios from "axios";
 import VueQrcode from "@chenfengyuan/vue-qrcode";
+import io from "socket.io-client";
 
 export default {
   name: "Node",
@@ -132,16 +150,41 @@ export default {
   data: () => ({
     url: process.env.VUE_APP_BASE_URL,
     dialog: true,
-    print: false,
+    confirm: false,
+    connection: false,
+    socket: null,
   }),
 
   created() {
     this.axiosGet();
+    this.socket = io(this.$store.state.printer);
+
+    this.socket.on("connect", () => {
+      this.connection = true;
+    });
+
+    this.socket.on("disconnect", () => {
+      this.connection = false;
+    });
   },
 
   watch: {
     "$store.state.server": function () {
       this.axiosGet();
+    },
+    "$store.state.printer": function () {
+      this.socket.off("connect");
+      this.socket.off("disconnect");
+      this.connection = false;
+      this.socket = io(this.$store.state.printer);
+
+      this.socket.on("connect", () => {
+        this.connection = true;
+      });
+
+      this.socket.on("disconnect", () => {
+        this.connection = false;
+      });
     },
   },
 
@@ -180,6 +223,11 @@ export default {
       if (this.$store.state.tab)
         items.sort((a, b) => b.name.localeCompare(a.name));
       else items.sort((a, b) => a.name.localeCompare(b.name));
+    },
+    print() {
+      this.socket.emit("print", {
+        url: `${this.url}/${this.$store.state.group._id}/${this.$store.state.node._id}`,
+      });
     },
   },
 };

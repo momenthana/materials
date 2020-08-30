@@ -27,13 +27,11 @@
         ></v-text-field>
         <v-text-field
           solo-inverted
-          v-model="$store.state.token"
-          placeholder="Token"
-          prepend-icon="mdi-key"
+          v-model="$store.state.printer"
+          placeholder="Printer"
+          prepend-icon="mdi-printer"
           :color="$store.state.color"
-          :type="showToken ? 'text' : 'password'"
-          :append-icon="showToken ? 'mdi-eye-off' : 'mdi-eye'"
-          @click:append="showToken = !showToken"
+          clearable
         ></v-text-field>
       </v-list-item-content>
     </v-list-item>
@@ -64,9 +62,8 @@ export default {
       localStorage.setItem("server", this.$store.state.server);
       this.axios();
     },
-    "$store.state.token": function () {
-      localStorage.setItem("token", this.$store.state.token);
-      this.axios();
+    "$store.state.printer": function () {
+      localStorage.setItem("printer", this.$store.state.printer);
     },
   },
 

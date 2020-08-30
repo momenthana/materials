@@ -11,7 +11,7 @@ export default new Vuex.Store({
     dialog: false,
     tab: 0,
     server: localStorage.getItem('server'),
-    token: localStorage.getItem('token'),
+    printer: localStorage.getItem('printer'),
     group: null,
     groupItems: null,
     node: null,
