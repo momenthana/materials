@@ -15,7 +15,13 @@ export default new Vuex.Store({
     group: null,
     groupItems: null,
     node: null,
-    nodeItems: null
+    nodeItems: null,
+    dialogItem: {
+      img: null,
+      title: null,
+      name: null,
+      description: null,
+    }
   },
   mutations: {
   },

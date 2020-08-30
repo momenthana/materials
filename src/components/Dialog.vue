@@ -2,14 +2,14 @@
   <v-row justify="center">
     <v-dialog v-model="$store.state.dialog" :width="$vuetify.breakpoint.smAndDown ? '75%' : '50%'">
       <v-card>
-        <v-img class="text-right" v-if="img" :src="img" height="100px">
+        <v-img class="text-right" v-if="$store.state.dialogItem.img" :src="$store.state.dialogItem.img" height="100px">
           <v-btn class="ma-3" icon dark @click="dialog = true">
             <v-icon :color="img ? $store.state.color : null">mdi-image-plus</v-icon>
           </v-btn>
         </v-img>
         <v-sheet v-else class="text-right" :color="$store.state.color" height="100px">
           <v-btn class="ma-3" icon dark @click="dialog = true">
-            <v-icon :color="img ? $store.state.color : null">mdi-image-plus</v-icon>
+            <v-icon :color="$store.state.dialogItem.img ? $store.state.color : null">mdi-image-plus</v-icon>
           </v-btn>
         </v-sheet>
         <v-card-text>
@@ -18,7 +18,7 @@
               <v-row>
                 <v-col cols="12" sm="7" md="8">
                   <v-text-field
-                    v-model="title"
+                    v-model="$store.state.dialogItem.title"
                     label="표제"
                     :color="$store.state.color"
                     clearable
@@ -28,7 +28,7 @@
                 </v-col>
                 <v-col cols="12" sm="5" md="4">
                   <v-text-field
-                    v-model="name"
+                    v-model="$store.state.dialogItem.name"
                     label="담당자"
                     :color="$store.state.color"
                     clearable
@@ -38,7 +38,7 @@
                 </v-col>
                 <v-col cols="12">
                   <v-text-field
-                    v-model="description"
+                    v-model="$store.state.dialogItem.description"
                     label="설명"
                     :color="$store.state.color"
                     clearable
@@ -164,10 +164,6 @@ import axios from "axios";
 export default {
   data: () => ({
     dialog: false,
-    img: null,
-    title: null,
-    description: null,
-    name: null,
     valid: true,
     lazy: false,
     general: [
