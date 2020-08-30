@@ -2,7 +2,7 @@
   <v-navigation-drawer v-model="$store.state.drawer" fixed temporary>
     <v-list-item class="mt-12">
       <v-list-item-content>
-        <v-menu v-model="menu" :close-on-content-click="false">
+        <v-menu v-model="menu" :close-on-content-click="false" offset-x>
           <template v-slot:activator="{ on, attrs }">
             <v-text-field
               readonly
@@ -31,7 +31,6 @@
           placeholder="Printer"
           prepend-icon="mdi-printer"
           :color="$store.state.color"
-          clearable
         ></v-text-field>
       </v-list-item-content>
     </v-list-item>

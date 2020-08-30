@@ -53,7 +53,7 @@
           <v-btn
             :color="$store.state.color"
             text
-            @click="reset(), $store.state.dialog = false, img = null"
+            @click="reset(), $store.state.dialog = false, $store.state.dialogItem.img = null"
           >취소</v-btn>
           <v-btn v-if="valid" :color="$store.state.color" dark @click="validate()">추가</v-btn>
         </v-card-actions>
@@ -71,7 +71,7 @@
           <v-tab>Other</v-tab>
           <v-tab-item>
             <v-col cols="12">
-              <v-text-field v-model="img" label="URL" :color="$store.state.color" clearable></v-text-field>
+              <v-text-field v-model="$store.state.dialogItem.img" label="URL" :color="$store.state.color" clearable></v-text-field>
             </v-col>
           </v-tab-item>
           <v-tab-item>
@@ -81,7 +81,7 @@
                 :key="url"
                 :cols="$vuetify.breakpoint.xsOnly ? 12 : $vuetify.breakpoint.mdAndDown ? 4 : 3"
               >
-                <v-card dark @click="img = url, dialog = false">
+                <v-card dark @click="$store.state.dialogItem.img = url, dialog = false">
                   <v-img :src="url" height="100px"></v-img>
                 </v-card>
               </v-col>
@@ -94,7 +94,7 @@
                 :key="url"
                 :cols="$vuetify.breakpoint.xsOnly ? 12 : $vuetify.breakpoint.mdAndDown ? 4 : 3"
               >
-                <v-card dark @click="img = url, dialog = false">
+                <v-card dark @click="$store.state.dialogItem.img = url, dialog = false">
                   <v-img :src="url" height="100px"></v-img>
                 </v-card>
               </v-col>
@@ -107,7 +107,7 @@
                 :key="url"
                 :cols="$vuetify.breakpoint.xsOnly ? 12 : $vuetify.breakpoint.mdAndDown ? 4 : 3"
               >
-                <v-card dark @click="img = url, dialog = false">
+                <v-card dark @click="$store.state.dialogItem.img = url, dialog = false">
                   <v-img :src="url" height="100px"></v-img>
                 </v-card>
               </v-col>
@@ -120,7 +120,7 @@
                 :key="url"
                 :cols="$vuetify.breakpoint.xsOnly ? 12 : $vuetify.breakpoint.mdAndDown ? 4 : 3"
               >
-                <v-card dark @click="img = url, dialog = false">
+                <v-card dark @click="$store.state.dialogItem.img = url, dialog = false">
                   <v-img :src="url" height="100px"></v-img>
                 </v-card>
               </v-col>
@@ -133,7 +133,7 @@
                 :key="url"
                 :cols="$vuetify.breakpoint.xsOnly ? 12 : $vuetify.breakpoint.mdAndDown ? 4 : 3"
               >
-                <v-card dark @click="img = url, dialog = false">
+                <v-card dark @click="$store.state.dialogItem.img = url, dialog = false">
                   <v-img :src="url" height="100px"></v-img>
                 </v-card>
               </v-col>
@@ -146,7 +146,7 @@
                 :key="url"
                 :cols="$vuetify.breakpoint.xsOnly ? 12 : $vuetify.breakpoint.mdAndDown ? 4 : 3"
               >
-                <v-card dark @click="img = url, dialog = false">
+                <v-card dark @click="$store.state.dialogItem.img = url, dialog = false">
                   <v-img :src="url" height="100px"></v-img>
                 </v-card>
               </v-col>
@@ -268,10 +268,10 @@ export default {
             this.$store.state.server +
             (this.$store.state.group ? "/node" : "/group"),
           {
-            img: this.img,
-            title: this.title,
-            description: this.description,
-            name: this.name,
+            img: this.$store.state.dialogItem.img,
+            title: this.$store.state.dialogItem.title,
+            description: this.$store.state.dialogItem.description,
+            name: this.$store.state.dialogItem.name,
             group: this.$store.state.group,
           }
         )
@@ -280,7 +280,7 @@ export default {
             this.$store.state.nodeItems.push(res.data);
           else this.$store.state.groupItems.push(res.data);
           this.$store.state.dialog = false;
-          this.img = null;
+          this.$store.state.dialogItem.img = null;
           this.reset();
         });
     },
