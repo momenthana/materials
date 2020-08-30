@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-model="$store.state.drawer" absolute temporary>
+  <v-navigation-drawer v-model="$store.state.drawer" fixed temporary>
     <v-list-item class="mt-12">
       <v-list-item-content>
         <v-menu v-model="menu" :close-on-content-click="false">
