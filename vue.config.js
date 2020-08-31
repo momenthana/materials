@@ -7,7 +7,10 @@ module.exports = {
       builderOptions: {
         appId: 'io.github.momenthana.material',
         productName: 'Material',
-        publish: 'github'
+        publish: 'github',
+        mac: {
+          darkModeSupport: true
+        },
       }
     }
   }

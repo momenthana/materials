@@ -55,7 +55,7 @@
             text
             @click="reset(), $store.state.dialog = false, $store.state.dialogItem.img = null"
           >취소</v-btn>
-          <v-btn v-if="valid" :color="$store.state.color" dark @click="validate()">추가</v-btn>
+          <v-btn :disabled="!valid" :color="$store.state.color" dark @click="validate()">추가</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
