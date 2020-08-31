@@ -276,12 +276,24 @@ export default {
           }
         )
         .then((res) => {
-          if (this.$store.state.group)
-            this.$store.state.nodeItems.push(res.data);
+          if (this.$store.state.group) this.$store.state.nodeItems.push(res.data);
           else this.$store.state.groupItems.push(res.data);
           this.$store.state.dialog = false;
           this.$store.state.dialogItem.img = null;
+          if (this.$store.state.fix) this.axiosDelete(this.$store.state.dialogItem._id);
+          this.$store.state.fix = false;
           this.reset();
+        });
+    },
+    axiosDelete: function (id) {
+      axios
+        .delete("//" + this.$store.state.server + (this.$store.state.group ? "/node/" : "/group/") + id)
+        .then((res) => {
+          const items = this.$store.state.group ? this.$store.state.nodeItems : this.$store.state.groupItems;
+          if (res.status == 204)
+            items.splice(
+              items.findIndex((item) => item._id == id), 1
+            );
         });
     },
   },

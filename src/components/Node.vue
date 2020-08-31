@@ -35,7 +35,7 @@
                   >링크 복사</v-btn>
                 </v-list-item>
                 <v-list-item>
-                  <v-btn text :color="$store.state.color" @click="$store.state.dialog = true, $store.state.dialogItem = item">수정하기</v-btn>
+                  <v-btn text :color="$store.state.color" @click="$store.state.dialog = true, $store.state.dialogItem = item, $store.state.fix = true">수정하기</v-btn>
                 </v-list-item>
                 <v-list-item>
                   <v-btn text color="red" @click="axiosDelete(item._id)">삭제하기</v-btn>
@@ -72,7 +72,7 @@
               </template>
               <v-list>
                 <v-list-item>
-                  <v-btn text :color="$store.state.color" @click="$store.state.dialog = true, $store.state.dialogItem = item">수정하기</v-btn>
+                  <v-btn text :color="$store.state.color" @click="$store.state.dialog = true, $store.state.dialogItem = item, $store.state.fix = true">수정하기</v-btn>
                 </v-list-item>
                 <v-list-item>
                   <v-btn text color="red" @click="axiosDelete($store.state.node._id)">삭제하기</v-btn>

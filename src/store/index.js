@@ -9,6 +9,7 @@ export default new Vuex.Store({
     online: false,
     drawer: false,
     dialog: false,
+    fix: false,
     tab: 0,
     server: localStorage.getItem('server'),
     printer: localStorage.getItem('printer'),
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     node: null,
     nodeItems: null,
     dialogItem: {
+      _id: null,
       img: null,
       title: null,
       name: null,
